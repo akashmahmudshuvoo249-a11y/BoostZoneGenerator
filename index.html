@@ -8,7 +8,7 @@
 <style>
 body{
 margin:0;
-font-family:Arial, sans-serif;
+font-family:Segoe UI, sans-serif;
 background:linear-gradient(135deg,#141e30,#243b55);
 display:flex;
 justify-content:center;
@@ -18,48 +18,64 @@ height:100vh;
 
 .container{
 background:rgba(255,255,255,0.08);
+backdrop-filter:blur(10px);
 padding:40px;
-border-radius:15px;
+border-radius:20px;
 width:600px;
 max-width:95%;
 color:white;
 text-align:center;
-box-shadow:0 20px 40px rgba(0,0,0,0.4);
+box-shadow:0 20px 40px rgba(0,0,0,0.5);
+}
+
+h2{
+margin-bottom:20px;
 }
 
 input{
 width:100%;
-padding:10px;
+padding:12px;
 margin-top:10px;
-border-radius:8px;
+border-radius:10px;
 border:none;
+font-size:16px;
 }
 
 button{
 width:100%;
 padding:12px;
-margin-top:10px;
-border-radius:8px;
+margin-top:12px;
+border-radius:10px;
 border:none;
 cursor:pointer;
 font-weight:bold;
+font-size:15px;
+transition:0.3s;
 }
 
 .generate{
-background:#00c6ff;
+background:linear-gradient(45deg,#00c6ff,#0072ff);
 color:white;
+}
+
+.generate:hover{
+transform:scale(1.05);
 }
 
 .copy{
-background:#ff4b2b;
+background:linear-gradient(45deg,#ff512f,#dd2476);
 color:white;
 }
 
+.copy:hover{
+transform:scale(1.05);
+}
+
 #output{
-margin-top:15px;
-padding:10px;
+margin-top:18px;
+padding:15px;
 background:rgba(0,0,0,0.4);
-border-radius:8px;
+border-radius:10px;
 font-size:13px;
 text-align:left;
 white-space:pre-wrap;
@@ -68,12 +84,17 @@ overflow:auto;
 }
 
 .footer{
-margin-top:20px;
-font-size:13px;
+margin-top:25px;
+font-size:14px;
 }
+
 .footer a{
-color:#00e0ff;
 text-decoration:none;
+transition:0.3s;
+}
+
+.footer a:hover{
+opacity:0.8;
 }
 </style>
 </head>
@@ -93,11 +114,31 @@ text-decoration:none;
 <div id="output"></div>
 
 <div class="footer">
-<hr>
-Contact Owner <b>MR SHUVO AHAMMAD</b><br>
-© 2026 Dev by <b>TRICK ZONE BOOST CENTER</b>. All rights reserved.<br><br>
-User Name: <a href="https://t.me/TrickZoneAdmin" target="_blank">@TrickZoneAdmin</a><br>
-Channel: <a href="https://t.me/boost_help_zone04" target="_blank">boost_help_zone04</a>
+<hr style="border:0.5px solid rgba(255,255,255,0.3); margin-top:20px;">
+
+Contact Owner 
+<a href="https://t.me/TrickZoneAdmin" target="_blank" 
+style="color:#FFD700; font-weight:bold;">
+MR SHUVO AHAMMAD
+</a><br>
+
+© 2026 Dev by 
+<span style="color:#FFD700; font-weight:bold;">
+TRICK ZONE BOOST CENTER
+</span>. All rights reserved.<br><br>
+
+User Name: 
+<a href="https://t.me/TrickZoneAdmin" target="_blank" 
+style="color:#00e0ff; font-weight:bold;">
+@TrickZoneAdmin
+</a><br>
+
+Channel: 
+<a href="https://t.me/boost_help_zone04" target="_blank" 
+style="color:#00e0ff; font-weight:bold;">
+boost_help_zone04
+</a>
+
 </div>
 
 </div>
