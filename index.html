@@ -1,96 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Random Mobile User-Agent Generator</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #141e30, #243b55);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:linear-gradient(135deg,#141e30,#243b55);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
 }
 
-.container {
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(10px);
-  padding: 40px;
-  border-radius: 20px;
-  width: 600px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-  color: white;
-  text-align: center;
+.container{
+background:rgba(255,255,255,0.08);
+padding:40px;
+border-radius:15px;
+width:600px;
+max-width:95%;
+color:white;
+text-align:center;
+box-shadow:0 20px 40px rgba(0,0,0,0.4);
 }
 
-h2 {
-  margin-bottom: 25px;
+input{
+width:100%;
+padding:10px;
+margin-top:10px;
+border-radius:8px;
+border:none;
 }
 
-input {
-  width: 100%;
-  padding: 12px;
-  border-radius: 10px;
-  border: none;
-  margin-top: 10px;
-  font-size: 16px;
+button{
+width:100%;
+padding:12px;
+margin-top:10px;
+border-radius:8px;
+border:none;
+cursor:pointer;
+font-weight:bold;
 }
 
-.btn {
-  margin-top: 15px;
-  padding: 12px;
-  width: 100%;
-  border-radius: 10px;
-  border: none;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
+.generate{
+background:#00c6ff;
+color:white;
 }
 
-.generate {
-  background: linear-gradient(45deg, #00c6ff, #0072ff);
-  color: white;
+.copy{
+background:#ff4b2b;
+color:white;
 }
 
-.generate:hover {
-  transform: scale(1.05);
+#output{
+margin-top:15px;
+padding:10px;
+background:rgba(0,0,0,0.4);
+border-radius:8px;
+font-size:13px;
+text-align:left;
+white-space:pre-wrap;
+max-height:200px;
+overflow:auto;
 }
 
-.copy {
-  background: linear-gradient(45deg, #ff512f, #dd2476);
-  color: white;
+.footer{
+margin-top:20px;
+font-size:13px;
 }
-
-.copy:hover {
-  transform: scale(1.05);
-}
-
-#output {
-  margin-top: 20px;
-  padding: 15px;
-  background: rgba(0,0,0,0.4);
-  border-radius: 10px;
-  font-size: 13px;
-  text-align: left;
-  max-height: 200px;
-  overflow-y: auto;
-  white-space: pre-wrap;
-}
-
-.footer {
-  margin-top: 25px;
-  font-size: 13px;
-  opacity: 0.9;
-}
-
-.footer a {
-  color: #00e0ff;
-  text-decoration: none;
+.footer a{
+color:#00e0ff;
+text-decoration:none;
 }
 </style>
 </head>
@@ -99,54 +82,51 @@ input {
 
 <div class="container">
 
-  <h2>Random Mobile User-Agent Generator</h2>
+<h2>Random Mobile User-Agent Generator</h2>
 
-  <label>Number of User-Agents</label>
-  <input type="number" id="count" value="1" min="1">
+<label>Number of User-Agents</label>
+<input type="number" id="count" value="1" min="1">
 
-  <button class="btn generate" onclick="generateUA()">Generate</button>
-  <button class="btn copy" onclick="copyUA()">Copy All</button>
+<button class="generate" onclick="generateUA()">Generate</button>
+<button class="copy" onclick="copyUA()">Copy All</button>
 
-  <div id="output"></div>
+<div id="output"></div>
 
-  <div class="footer">
-    <hr style="border:0.5px solid rgba(255,255,255,0.3); margin-top:20px;">
-    Contact Owner <b>MR SHUVO AHAMMAD</b><br>
-    © 2026 Dev by <b>TRICK ZONE BOOST CENTER</b>. All rights reserved.<br><br>
-    User Name: <a href="https://t.me/TrickZoneAdmin" target="_blank">@TrickZoneAdmin</a><br>
-    Channel: <a href="https://t.me/boost_help_zone04" target="_blank">boost_help_zone04</a>
-  </div>
+<div class="footer">
+<hr>
+Contact Owner <b>MR SHUVO AHAMMAD</b><br>
+© 2026 Dev by <b>TRICK ZONE BOOST CENTER</b>. All rights reserved.<br><br>
+User Name: <a href="https://t.me/TrickZoneAdmin" target="_blank">@TrickZoneAdmin</a><br>
+Channel: <a href="https://t.me/boost_help_zone04" target="_blank">boost_help_zone04</a>
+</div>
 
 </div>
 
 <script>
-function randomAndroidVersion() {
-  const versions = ["10", "11", "12", "13", "14"];
-  return versions[Math.floor(Math.random() * versions.length)];
+function randomAndroidVersion(){
+var versions=["10","11","12","13","14"];
+return versions[Math.floor(Math.random()*versions.length)];
 }
 
-function randomChromeVersion() {
-  return Math.floor(Math.random() * 40) + 80;
+function randomChromeVersion(){
+return Math.floor(Math.random()*40)+80;
 }
 
-function generateUA() {
-  const count = document.getElementById("count").value;
-  const output = document.getElementById("output");
-  output.textContent = "";
-
-  for (let i = 0; i < count; i++) {
-    let ua = `Mozilla/5.0 (Linux; Android ${randomAndroidVersion()}; Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${randomChromeVersion()}.0.0.0 Mobile Safari/537.36`;
-    output.textContent += ua + "\n\n";
-  }
+function generateUA(){
+var count=document.getElementById("count").value;
+var output=document.getElementById("output");
+output.textContent="";
+for(var i=0;i<count;i++){
+var ua="Mozilla/5.0 (Linux; Android "+randomAndroidVersion()+"; Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/"+randomChromeVersion()+".0.0.0 Mobile Safari/537.36";
+output.textContent+=ua+"\n\n";
+}
 }
 
-function copyUA() {
-  const text = document.getElementById("output").textContent;
-  if (!text) return alert("Generate first!");
-
-  navigator.clipboard.writeText(text).then(() => {
-    alert("Copied Successfully!");
-  });
+function copyUA(){
+var text=document.getElementById("output").textContent;
+if(!text){alert("Generate first!");return;}
+navigator.clipboard.writeText(text);
+alert("Copied Successfully!");
 }
 </script>
 
