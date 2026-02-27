@@ -13,88 +13,78 @@ background:linear-gradient(135deg,#141e30,#243b55);
 display:flex;
 justify-content:center;
 align-items:center;
-height:100vh;
+min-height:100vh;
+padding:20px;
 }
 
 .container{
 background:rgba(255,255,255,0.08);
-backdrop-filter:blur(10px);
-padding:40px;
-border-radius:20px;
-width:600px;
-max-width:95%;
+backdrop-filter:blur(12px);
+padding:50px;
+border-radius:25px;
+width:90%;
+max-width:900px;
 color:white;
 text-align:center;
-box-shadow:0 20px 40px rgba(0,0,0,0.5);
+box-shadow:0 25px 60px rgba(0,0,0,0.6);
 }
 
 h2{
-margin-bottom:20px;
-}
-
-input{
-width:100%;
-padding:12px;
-margin-top:10px;
-border-radius:10px;
-border:none;
-font-size:16px;
+font-size:28px;
+margin-bottom:25px;
 }
 
 button{
 width:100%;
-padding:12px;
-margin-top:12px;
-border-radius:10px;
+padding:14px;
+margin-top:15px;
+border-radius:12px;
 border:none;
 cursor:pointer;
 font-weight:bold;
-font-size:15px;
+font-size:16px;
 transition:0.3s;
-}
-
-.generate{
 background:linear-gradient(45deg,#00c6ff,#0072ff);
 color:white;
 }
 
-.generate:hover{
-transform:scale(1.05);
-}
-
-.copy{
-background:linear-gradient(45deg,#ff512f,#dd2476);
-color:white;
-}
-
-.copy:hover{
+button:hover{
 transform:scale(1.05);
 }
 
 #output{
-margin-top:18px;
-padding:15px;
-background:rgba(0,0,0,0.4);
-border-radius:10px;
-font-size:13px;
+margin-top:25px;
 text-align:left;
-white-space:pre-wrap;
-max-height:200px;
-overflow:auto;
 }
 
-.footer{
-margin-top:25px;
+.card{
+background:rgba(255,255,255,0.08);
+padding:18px;
+border-radius:15px;
+margin-bottom:20px;
+}
+
+.copy-btn{
+margin-top:12px;
+padding:8px 15px;
+background:green;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
 font-size:14px;
 }
 
-.footer a{
-text-decoration:none;
-transition:0.3s;
+.footer{
+margin-top:35px;
+font-size:16px;
+text-align:center;
 }
 
-.footer a:hover{
-opacity:0.8;
+.footer a{
+color:#FFD700;
+font-weight:bold;
+text-decoration:none;
 }
 </style>
 </head>
@@ -105,67 +95,68 @@ opacity:0.8;
 
 <h2>Random Mobile User-Agent Generator</h2>
 
-<label>Number of User-Agents</label>
-<input type="number" id="count" value="1" min="1">
-
-<button class="generate" onclick="generateUA()">Generate</button>
-<button class="copy" onclick="copyUA()">Copy All</button>
+<button onclick="generateUA()">Generate 5 User-Agents</button>
 
 <div id="output"></div>
 
 <div class="footer">
-<hr style="border:0.5px solid rgba(255,255,255,0.3); margin-top:20px;">
-
+<hr style="border:0.5px solid rgba(255,255,255,0.3); margin-top:30px;">
 Contact Owner 
-<a href="https://t.me/TrickZoneAdmin" target="_blank" 
-style="color:#FFD700; font-weight:bold;">
+<a href="https://telegram.me/TrickZoneAdmin" target="_blank">
 MR SHUVO AHAMMAD
 </a><br>
-
-© 2026 Dev by 
-<span style="color:#FFD700; font-weight:bold;">
-TRICK ZONE BOOST CENTER
-</span>. All rights reserved.<br><br>
-
-User Name: 
-<a href="https://t.me/TrickZoneAdmin" target="_blank" 
-style="color:#00e0ff; font-weight:bold;">
-@TrickZoneAdmin
-</a><br>
-
-Channel: 
-<a href="https://t.me/boost_help_zone04" target="_blank" 
-style="color:#00e0ff; font-weight:bold;">
-boost_help_zone04
-</a>
-
+© 2026 Dev by TRICK ZONE BOOST CENTER. All rights reserved.
 </div>
 
 </div>
 
 <script>
+var devices = [
+"SM-A526B",
+"SM-G991B",
+"Redmi Note 11",
+"Mi 11X",
+"Pixel 7",
+"SM-A146B",
+"Realme RMX3085",
+"Vivo V2059",
+"OnePlus LE2113"
+];
+
 function randomAndroidVersion(){
 var versions=["10","11","12","13","14"];
 return versions[Math.floor(Math.random()*versions.length)];
 }
 
 function randomChromeVersion(){
-return Math.floor(Math.random()*40)+80;
+return Math.floor(Math.random()*20)+110;
 }
 
 function generateUA(){
-var count=document.getElementById("count").value;
 var output=document.getElementById("output");
-output.textContent="";
-for(var i=0;i<count;i++){
-var ua="Mozilla/5.0 (Linux; Android "+randomAndroidVersion()+"; Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/"+randomChromeVersion()+".0.0.0 Mobile Safari/537.36";
-output.textContent+=ua+"\n\n";
+output.innerHTML="";
+
+for(var i=0;i<5;i++){
+
+var device = devices[Math.floor(Math.random()*devices.length)];
+
+var ua="Mozilla/5.0 (Linux; Android "
++randomAndroidVersion()
++"; "
++device
++") AppleWebKit/537.36 (KHTML, like Gecko) Chrome/"
++randomChromeVersion()
++".0.0.0 Mobile Safari/537.36";
+
+output.innerHTML += 
+"<div class='card'>"
++ ua +
+"<br><button class='copy-btn' onclick=\"copyText(this)\">Copy</button></div>";
 }
 }
 
-function copyUA(){
-var text=document.getElementById("output").textContent;
-if(!text){alert("Generate first!");return;}
+function copyText(btn){
+var text = btn.parentElement.innerText.replace("Copy","");
 navigator.clipboard.writeText(text);
 alert("Copied Successfully!");
 }
