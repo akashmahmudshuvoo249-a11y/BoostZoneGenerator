@@ -9,71 +9,84 @@
 body{
 margin:0;
 font-family:Segoe UI, sans-serif;
-background:linear-gradient(135deg,#2b4c7e,#1e3c72);
+background:linear-gradient(135deg,#1e3c72,#2a5298);
 display:flex;
 justify-content:center;
 align-items:center;
 min-height:100vh;
-padding:40px;
+padding:30px;
 }
 
 .container{
 background:rgba(255,255,255,0.08);
-padding:60px;
-border-radius:30px;
+backdrop-filter:blur(10px);
+padding:45px;
+border-radius:20px;
 width:100%;
-max-width:1100px;
+max-width:800px;
 color:white;
 text-align:center;
-box-shadow:0 30px 80px rgba(0,0,0,0.6);
+box-shadow:0 25px 60px rgba(0,0,0,0.5);
 }
 
 h2{
-font-size:36px;
-margin-bottom:30px;
-}
-
-label{
-font-size:18px;
+font-size:28px;
+margin-bottom:25px;
 }
 
 input{
 width:100%;
-padding:16px;
-border-radius:14px;
+padding:14px;
+border-radius:10px;
 border:none;
-margin-top:12px;
-font-size:20px;
+margin-top:10px;
+font-size:18px;
 }
 
-button{
-margin-top:20px;
-padding:16px;
+.generate-btn{
+margin-top:18px;
+padding:14px;
 width:100%;
 border:none;
-border-radius:14px;
+border-radius:10px;
 background:linear-gradient(45deg,#00c6ff,#0072ff);
 color:white;
 font-weight:bold;
 cursor:pointer;
-font-size:20px;
-transition:0.3s;
+font-size:18px;
 }
 
-button:hover{
-transform:scale(1.03);
+.card{
+margin-top:20px;
+background:rgba(255,255,255,0.08);
+padding:18px;
+border-radius:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:15px;
 }
 
-#output{
-margin-top:30px;
-font-size:16px;
-white-space:pre-wrap;
+.ua-text{
+flex:1;
 text-align:left;
+font-size:14px;
+word-break:break-word;
+}
+
+.copy-btn{
+background:#28a745;
+border:none;
+color:white;
+padding:8px 16px;
+border-radius:8px;
+cursor:pointer;
+font-weight:bold;
 }
 
 .footer{
-margin-top:40px;
-font-size:18px;
+margin-top:35px;
+font-size:15px;
 }
 
 .footer a{
@@ -93,12 +106,12 @@ text-decoration:none;
 <label>Number of User-Agents</label>
 <input type="number" id="count" value="4" min="1">
 
-<button onclick="generateUA()">Generate</button>
+<button class="generate-btn" onclick="generateUA()">Generate</button>
 
 <div id="output"></div>
 
 <div class="footer">
-<hr style="border:0.5px solid rgba(255,255,255,0.3); margin-top:35px;">
+<hr style="border:0.5px solid rgba(255,255,255,0.3); margin-top:30px;">
 Contact Owner 
 <a href="https://telegram.me/TrickZoneAdmin" target="_blank">
 MR SHUVO AHAMMAD
@@ -112,6 +125,15 @@ TRICK ZONE BOOST CENTER
 </div>
 
 <script>
+var devices = [
+"Vivo 1906",
+"Redmi Note 11",
+"SM-A526B",
+"SM-G991B",
+"Pixel 7",
+"Realme RMX3085"
+];
+
 function randomAndroidVersion(){
 var versions=["10","11","12","13","14"];
 return versions[Math.floor(Math.random()*versions.length)];
@@ -124,15 +146,32 @@ return Math.floor(Math.random()*30)+100;
 function generateUA(){
 var count=document.getElementById("count").value;
 var output=document.getElementById("output");
-output.textContent="";
+output.innerHTML="";
+
 for(var i=0;i<count;i++){
+
+var device = devices[Math.floor(Math.random()*devices.length)];
+
 var ua="Mozilla/5.0 (Linux; Android "
 +randomAndroidVersion()
-+"; Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/"
++"; "
++device
++") AppleWebKit/537.36 (KHTML, like Gecko) Chrome/"
 +randomChromeVersion()
 +".0.0.0 Mobile Safari/537.36";
-output.textContent+=ua+"\n\n";
+
+output.innerHTML += 
+"<div class='card'>"
++"<div class='ua-text'>"+ua+"</div>"
++"<button class='copy-btn' onclick='copyUA(this)'>Copy</button>"
++"</div>";
 }
+}
+
+function copyUA(btn){
+var text = btn.parentElement.querySelector(".ua-text").innerText;
+navigator.clipboard.writeText(text);
+alert("Copied!");
 }
 </script>
 
